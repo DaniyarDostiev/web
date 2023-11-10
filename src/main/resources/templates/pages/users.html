@@ -21,7 +21,9 @@
         <td th:utext="${user.age}">Возраст</td>
         <td>
             <a th:href="@{'/users/edit?id=' + ${user.id}}">Изменить</a>
-            <a th:href="@{'/users/delete?id=' + ${user.id}}">Удалить</a>
+            <form th:method="delete" th:action="@{'/users/delete?id=' + ${user.id}}">
+                <input type="submit" value="Удалить">
+            </form>
         </td>
     </tr>
 </table>

@@ -7,13 +7,15 @@
 <body>
 
 <div th:switch="${user.name}">
-    <div th:case="null" th:with="action=@{/users/new}"></div>
+    <div th:case="null">
+        <div th:with="action=@{/users/new}"></div>
+    </div>
     <div th:case="*">
         <div th:with="action=@{/users/edit}"></div>
     </div>
 </div>
 
-<form th:method="post" th:action="${action}" th:object="${user}">
+<form th:method="${user.name == null} ? 'post' : 'patch'" th:action="${action}" th:object="${user}">
     <label for="name">Имя</label>
     <input type="text" th:field="*{name}" id="name">
     <br>
